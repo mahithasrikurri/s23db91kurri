@@ -1,9 +1,6 @@
 var express = require('express');
+const Apple_controlers= require('../controllers/Apple');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Apple', { title: 'Search Results Apple' });
-});
-
+/* GET Apple */
+router.get('/', Apple_controlers.Apple_view_all_Page );
 module.exports = router;
