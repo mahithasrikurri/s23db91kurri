@@ -41,6 +41,40 @@ res.send(`{"error": ${err}}`);
 }
 };
 
+// for a specific Apple.
+exports.Apple_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Apple.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
+
+    //Handle Apple update form on PUT.
+    exports.Apple_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await Apple.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.name)
+    toUpdate.name = req.body.name;
+    if(req.body.color) toUpdate.color = req.body.color;
+    if(req.body.price) toUpdate.price = req.body.price;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    };
+
 // Handle Apple create on POST.
 exports.Apple_create_post = async function(req, res) {
 console.log(req.body)
@@ -61,4 +95,15 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
-
+// Handle Apple delete on DELETE.
+exports.Apple_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Apple.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
