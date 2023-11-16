@@ -1,20 +1,26 @@
 extends layout
+
 block content
-h1= title
-- let Appleid = toShow._id
-- let Apple_type = toShow.name
-- let Applecost = toShow.color
-- let Appleize = toShow.price
-div
-div.row
-div(class='AppleAttr mr-3') Apple ID is:
-div #{Appleid}
-div.row
-div(class='AppleAttr mr-3') name is:
-div #{name}
-div.row
-div(class='AppleAttr mr-3') color is:
-div #{color}
-div.row
-div(class='AppleAttr mr-3') price is:
-div #{price}
+  h1= title
+
+  - let Appleid = toShow._id
+  - let name = toShow.name
+  - let color = toShow.color
+  - let price= toShow.price
+
+  div
+    div.row
+      div(class='AppleAttr mr-4') Apple ID is:
+      div #{Appleid}
+
+    div.row
+      div(class='AppleAttr mr-4')  name is:
+      div #{name}
+
+    div.row
+      div(class='AppleAttr mr-4') color is:
+      div #{color}
+
+    div.row
+      div(class='AppleAttr mr-4') price:
+      div #{price}
