@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1= title
+  - if (toShow == null)
+    h2 No instance to delete
+  - else
+    - let Appleid = toShow._id
+    - let Apple_name = toShow.name
+    - let Applecolor = toShow.color
+    - let Appleprice = toShow.price
+    - let actionid = "/resource/Apple/" + Appleid
+    script.
+      let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='AppleAttr mr-3') Apple ID is:
+        div #{Appleid}
+      div.row
+        div(class='AppleAttr mr-3') Apple name is:
+        div #{Apple_name}
+      div.row
+        div(class='AppleAttr mr-3') Apple color is:
+        div #{Applecolor}
+      div.row
+        div(class='AppleAttr mr-3') Apple price is:
+        div #{Appleprice}
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+      function cancel() {
+        // Go back to the home page for the Apple collection
+        window.location.href='/Apple'
+      }
+    script.
+      function deleteOnid() {
+        console.log("starting delete");
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE'     // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded");
+          window.location.href='/Apple';
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error );
+        });
+      }

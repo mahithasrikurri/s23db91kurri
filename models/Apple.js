@@ -15,3 +15,6 @@ const AppleSchema = mongoose.Schema({
 });
 module.exports = mongoose.model("Apple",
 AppleSchema)
+
+    
+    
