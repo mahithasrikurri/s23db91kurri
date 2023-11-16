@@ -5,3 +5,5 @@ var router = express.Router();
 router.get('/', Apple_controlers.Apple_view_all_Page );
 module.exports = router;
 
+/* GET detail Apple page */
+router.get('/detail', Apple_controlers.Apple_view_one_Page);
