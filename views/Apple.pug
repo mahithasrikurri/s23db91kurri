@@ -2,14 +2,26 @@ extends layout
 
 block content
   h1= title
-  - var results =[{name:"red_Apple", color:"red", price:20},{name:"green_Apple", color:"green", price:30},{name:"yellow_Apple", color: "yellow", price:40}]
-  div(class="container-fluid")
-  div(class="row")
-   each v,index  in results 
-    div(class="col-sm-2" onclick =`buy(${index})`) #{v.name}, #{v.color}, #{v.price}
+    - let items = results;
+    div(class="container-fluid")
+    div(class="row m-1")
+        each item in items
+         - let destination = `dispatch(\"/Apple/update?id=${item._id}\")`
+            div(class="row-sm-2", class="m-1") Apple #{item.name}(#{item.color}) is #{item.price}
+                button.btn( class="btn-primary ml-1", onclick= destination) Update
     script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-            
+        function dispatch(path){
+            window.location.href=path
         }
+//-   - var results =[{name:"red_Apple", color:"red", price:20},{name:"green_Apple", color:"green", price:30},{name:"yellow_Apple", color: "yellow", price:40}]
+    
+//-   div(class="container-fluid")
+//-   div(class="row")
+//-    each v,index  in results 
+//-     div(class="col-sm-2" onclick =`buy(${index})`) #{v.name}, #{v.color}, #{v.price}
+//-     script.
+//-         function buy(a)
+//-         {
+//-             alert(`You purchased Item ${a+1}`)
+            
+//-         }

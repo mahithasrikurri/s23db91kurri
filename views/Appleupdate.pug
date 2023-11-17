@@ -2,11 +2,14 @@ extends layout
 
 block content
   h1= title
+  if (toShow == null)
+    h2 No instance to update
+  else
   - let Apple_id = toShow._id
   - let Apple_name = toShow.name
   - let Apple_color = toShow.color
   - let Apple_price = toShow.price
-
+  
   div.row(class='mb-2')
     div.mr-1 ID is
     div #{Apple_id}
