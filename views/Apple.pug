@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  button.btn.btn-primary(onClick=`dispatch(\"/vehicles/create\")`) Create Vehicle
     - let items = results;
     div(class="container-fluid")
     div(class="row m-1")
@@ -13,15 +14,3 @@ block content
         function dispatch(path){
             window.location.href=path
         }
-//-   - var results =[{name:"red_Apple", color:"red", price:20},{name:"green_Apple", color:"green", price:30},{name:"yellow_Apple", color: "yellow", price:40}]
-    
-//-   div(class="container-fluid")
-//-   div(class="row")
-//-    each v,index  in results 
-//-     div(class="col-sm-2" onclick =`buy(${index})`) #{v.name}, #{v.color}, #{v.price}
-//-     script.
-//-         function buy(a)
-//-         {
-//-             alert(`You purchased Item ${a+1}`)
-            
-//-         }
